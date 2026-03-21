@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Services | Frame To Final</title>
+  <title>Services | Frame to Final</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:title" content="Services | Praveen">
   <meta property="og:description" content="Fast, reliable video editing for wedding studios and content creators.">
@@ -71,7 +71,7 @@
       </div>
     </div>
 
-    <div style="text-align:center;margin-top:60px;" class="fade-in">
+    <div class="fade-in" style="text-align:center;margin-top:60px;">
       <a href="contact.html" class="btn">Start a Project</a>
       <p style="margin-top:20px;font-size:13px;color:var(--muted);">Custom pricing available for bulk projects and recurring work.</p>
     </div>
@@ -94,27 +94,58 @@
 
 <footer>
   <div class="footer-inner">
-    <div class="footer-brand"><a href="index.html" class="logo">PRAVEEN</a><p>High-end remote editing for wedding studios and content creators.</p></div>
-    <div class="footer-col"><h4>Navigate</h4><a href="portfolio.html">Portfolio</a><a href="services.html">Services</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
-    <div class="footer-col"><h4>Contact</h4><a href="mailto:praveenalla06@gmail.com">praveenalla06@gmail.com</a><a href="https://wa.me/919348389850">+91 93483 89850</a></div>
+    <div class="footer-brand">
+      <a href="index.html" class="logo">PRAVEEN</a>
+      <p>High-end remote editing for wedding studios and content creators.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="mailto:praveenalla06@gmail.com">praveenalla06@gmail.com</a>
+      <a href="https://wa.me/919348389850">+91 93483 89850</a>
+    </div>
   </div>
-  <div class="footer-bottom"><p>&copy; 2026 Praveen Cinematics. All rights reserved.</p><span>Made with precision.</span></div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Praveen Cinematics. All rights reserved.</p>
+    <span>Made with precision.</span>
+  </div>
 </footer>
 
 <script>
 window.addEventListener("load", () => document.body.classList.add("loaded"));
+
 let ticking = false;
 window.addEventListener("scroll", () => {
   if (!ticking) {
-    requestAnimationFrame(() => { document.querySelector("header").classList.toggle("scrolled", window.scrollY > 50); ticking = false; });
+    requestAnimationFrame(() => {
+      document.querySelector("header").classList.toggle("scrolled", window.scrollY > 50);
+      ticking = false;
+    });
     ticking = true;
   }
 }, { passive: true });
+
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("show"); io.unobserve(e.target); } });
 }, { threshold: 0.08 });
 document.querySelectorAll(".fade-in").forEach(el => io.observe(el));
-function toggleMenu() { document.getElementById("navMenu").classList.toggle("active"); }
+
+function toggleMenu() {
+  document.getElementById("navMenu").classList.toggle("active");
+}
+document.addEventListener("click", (e) => {
+  const nav = document.getElementById("navMenu");
+  const toggle = document.querySelector(".menu-toggle");
+  if (nav && toggle && !nav.contains(e.target) && !toggle.contains(e.target)) {
+    nav.classList.remove("active");
+  }
+});
 </script>
 </body>
 </html>

@@ -5,16 +5,14 @@
   <title>Portfolio | Frame to Final</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:title" content="Portfolio | Praveen">
-  <meta property="og:description" content="Cinematic wedding films and high-performing reels. See the work.">
+  <meta property="og:description" content="Cinematic wedding films and high-performing reels.">
   <meta property="og:image" content="N&N PREWED thumb.jpg">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<div id="loader" style="position:fixed;inset:0;background:#050505;z-index:9999;display:flex;justify-content:center;align-items:center;">
-  <span style="font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:6px;color:#F4F0EB;">PRAVEEN</span>
-</div>
 
 <header>
   <a href="index.html" class="logo">PRAVEEN</a>
@@ -35,12 +33,12 @@
     <p class="section-sub fade-in" style="margin:0 auto;">Real projects. Real clients. Real results.</p>
 
     <div class="filters fade-in">
-      <button onclick="filterSelection('all', this)" class="active">All</button>
-      <button onclick="filterSelection('wedding', this)">Wedding</button>
-      <button onclick="filterSelection('reels', this)">Reels</button>
+      <button onclick="filterSelection('all',this)" class="active">All</button>
+      <button onclick="filterSelection('wedding',this)">Wedding</button>
+      <button onclick="filterSelection('reels',this)">Reels</button>
     </div>
 
-    <div id="cinematicWrapper" class="fade-in">
+    <div id="cinematicWrapper">
       <h3 class="section-title">Cinematic Films</h3>
       <div class="portfolio-grid cinematic-grid">
 
@@ -64,7 +62,7 @@
       </div>
     </div>
 
-    <div id="reelsWrapper" class="fade-in">
+    <div id="reelsWrapper">
       <h3 class="section-title">Reels</h3>
       <div class="portfolio-grid reels-grid">
 
@@ -93,7 +91,6 @@
   </div>
 </section>
 
-<!-- CTA -->
 <section class="final-cta" style="padding:80px 0;">
   <div class="container">
     <h2 class="fade-in" style="font-size:clamp(32px,5vw,56px);">Like What You See?</h2>
@@ -110,27 +107,11 @@
 
 <footer>
   <div class="footer-inner">
-    <div class="footer-brand">
-      <a href="index.html" class="logo">PRAVEEN</a>
-      <p>High-end remote editing for wedding studios and content creators.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Navigate</h4>
-      <a href="portfolio.html">Portfolio</a>
-      <a href="services.html">Services</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <a href="mailto:praveenalla06@gmail.com">praveenalla06@gmail.com</a>
-      <a href="https://wa.me/919348389850">+91 93483 89850</a>
-    </div>
+    <div class="footer-brand"><a href="index.html" class="logo">PRAVEEN</a><p>High-end remote editing for wedding studios and content creators.</p></div>
+    <div class="footer-col"><h4>Navigate</h4><a href="portfolio.html">Portfolio</a><a href="services.html">Services</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+    <div class="footer-col"><h4>Contact</h4><a href="mailto:praveenalla06@gmail.com">praveenalla06@gmail.com</a><a href="https://wa.me/919348389850">+91 93483 89850</a></div>
   </div>
-  <div class="footer-bottom">
-    <p>&copy; 2026 Praveen Cinematics. All rights reserved.</p>
-    <span>Made with precision.</span>
-  </div>
+  <div class="footer-bottom"><p>&copy; 2026 Praveen Cinematics. All rights reserved.</p><span>Made with precision.</span></div>
 </footer>
 
 <div id="videoModal" class="modal">
@@ -140,82 +121,114 @@
 
 <script src="https://player.vimeo.com/api/player.js"></script>
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  window.addEventListener("load", () => {
-    document.getElementById("loader").style.display = "none";
-    document.body.classList.add("loaded");
-  });
+window.addEventListener("load", () => document.body.classList.add("loaded"));
 
-  const fadeEls = document.querySelectorAll(".fade-in");
-  function checkFade() {
-    fadeEls.forEach(el => {
-      if (el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add("show");
+// Throttled header scroll
+let ticking = false;
+window.addEventListener("scroll", () => {
+  if (!ticking) {
+    requestAnimationFrame(() => {
+      document.querySelector("header").classList.toggle("scrolled", window.scrollY > 50);
+      ticking = false;
     });
+    ticking = true;
   }
-  checkFade(); window.addEventListener("scroll", checkFade);
+}, { passive: true });
 
-  const isMobile = window.innerWidth <= 768;
+// IntersectionObserver — reveals .fade-in and .video-card elements
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add("show"); io.unobserve(e.target); }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll(".fade-in, .video-card").forEach(el => io.observe(el));
+
+// ─────────────────────────────────────────────────
+// Hover-to-play (desktop only)
+// CSS handles ALL thumb/overlay/video opacity — zero JS style.opacity manipulation
+// Touching style.opacity from JS would override CSS and break the fade-back transition
+// ─────────────────────────────────────────────────
+const isMobile = window.innerWidth <= 768;
+if (!isMobile) {
   document.querySelectorAll(".video-card").forEach(card => {
     const vid = card.querySelector(".preview-video");
-    if (!isMobile && vid) {
-      if (vid.tagName === "VIDEO") {
-        card.addEventListener("mouseenter", () => vid.play());
-        card.addEventListener("mouseleave", () => { vid.pause(); vid.currentTime = 0; });
-      } else if (vid.tagName === "IFRAME") {
-        const player = new Vimeo.Player(vid);
-        player.pause();
-        card.addEventListener("mouseenter", () => player.play());
-        card.addEventListener("mouseleave", () => { player.pause(); player.setCurrentTime(0); });
-      }
+    if (!vid) return;
+
+    if (vid.tagName === "VIDEO") {
+      card.addEventListener("mouseenter", () => vid.play(), { passive: true });
+      card.addEventListener("mouseleave", () => {
+        vid.pause();
+        vid.currentTime = 0;
+        // No style.opacity here — CSS :hover removal triggers the fade-back automatically
+      }, { passive: true });
+
+    } else if (vid.tagName === "IFRAME") {
+      let player = null; // lazy-init: don't create API objects until first hover
+      card.addEventListener("mouseenter", () => {
+        if (!player) player = new Vimeo.Player(vid);
+        player.play();
+      }, { passive: true });
+      card.addEventListener("mouseleave", () => {
+        if (player) { player.pause(); player.setCurrentTime(0); }
+        // No thumb.style.opacity here — CSS handles the return fade
+      }, { passive: true });
     }
   });
+}
 
-  const cards = document.querySelectorAll(".video-card");
-  function revealCards() {
-    cards.forEach((card, i) => {
-      if (card.getBoundingClientRect().top < window.innerHeight - 50) {
-        setTimeout(() => card.classList.add("show"), i * 80);
-      }
-    });
-  }
-  revealCards(); window.addEventListener("scroll", revealCards);
-
-  window.addEventListener("scroll", () => {
-    document.querySelector("header").classList.toggle("scrolled", window.scrollY > 50);
-  });
-});
-
+// ─────────────────────────────────────────────────
+// Modal
+// ─────────────────────────────────────────────────
 function openVideo(src) {
   const modal = document.getElementById("videoModal");
   const video = document.getElementById("modalVideo");
-  video.src = src; modal.style.display = "flex"; document.body.style.overflow = "hidden"; video.play();
+  video.src = src;
+  modal.style.display = "flex";
+  document.body.style.overflow = "hidden";
+  video.play();
 }
 
 function openVimeo(id) {
   const modal = document.getElementById("videoModal");
   modal.innerHTML = `<span onclick="closeVideo()">×</span><iframe src="https://player.vimeo.com/video/${id}?autoplay=1" frameborder="0" allow="autoplay; fullscreen"></iframe>`;
-  modal.style.display = "flex"; document.body.style.overflow = "hidden";
+  modal.style.display = "flex";
+  document.body.style.overflow = "hidden";
 }
 
 function closeVideo() {
   const modal = document.getElementById("videoModal");
   modal.innerHTML = `<span onclick="closeVideo()">×</span><video controls id="modalVideo"></video>`;
-  modal.style.display = "none"; document.body.style.overflow = "auto";
+  modal.style.display = "none";
+  document.body.style.overflow = "auto";
 }
 
-function filterSelection(category, btn) {
+// ─────────────────────────────────────────────────
+// Filter
+// ─────────────────────────────────────────────────
+function filterSelection(cat, btn) {
   const cinematic = document.getElementById("cinematicWrapper");
   const reels = document.getElementById("reelsWrapper");
-  if (category === "all") { cinematic.style.display = "block"; reels.style.display = "block"; }
-  else if (category === "wedding") { cinematic.style.display = "block"; reels.style.display = "none"; }
-  else if (category === "reels") { cinematic.style.display = "none"; reels.style.display = "block"; }
-  document.querySelectorAll(".fade-in").forEach(el => el.classList.add("show"));
-  setTimeout(() => document.querySelectorAll(".video-card").forEach(c => c.classList.add("show")), 50);
+  cinematic.style.display = (cat === "reels") ? "none" : "block";
+  reels.style.display = (cat === "wedding") ? "none" : "block";
+  // Re-show all elements after filter
+  document.querySelectorAll(".fade-in, .video-card").forEach(el => el.classList.add("show"));
   document.querySelectorAll(".filters button").forEach(b => b.classList.remove("active"));
   btn.classList.add("active");
 }
 
-function toggleMenu() { document.getElementById("navMenu").classList.toggle("active"); }
+// ─────────────────────────────────────────────────
+// Mobile menu — close on outside click
+// ─────────────────────────────────────────────────
+function toggleMenu() {
+  document.getElementById("navMenu").classList.toggle("active");
+}
+document.addEventListener("click", (e) => {
+  const nav = document.getElementById("navMenu");
+  const toggle = document.querySelector(".menu-toggle");
+  if (nav && toggle && !nav.contains(e.target) && !toggle.contains(e.target)) {
+    nav.classList.remove("active");
+  }
+});
 </script>
 </body>
 </html>

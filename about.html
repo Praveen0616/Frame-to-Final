@@ -2,12 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>About | Praveen</title>
+  <title>About | Frame To final-cta</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:title" content="About | Praveen">
   <meta property="og:description" content="Video editor focused on helping videographers deliver faster without compromising quality.">
   <meta property="og:image" content="N&N PREWED thumb.jpg">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -28,21 +30,15 @@
   <div class="container">
     <p class="section-label fade-in">Who's Editing</p>
     <h2 class="section-heading fade-in">About</h2>
-
     <div class="about-page-grid">
       <div class="about-page-img fade-in">
-        <img src="your-image.jpg" alt="Praveen">
+        <img src="your-image.jpg" alt="Praveen" loading="lazy">
       </div>
-
       <div class="about-page-text fade-in">
         <h2 class="section-heading" style="font-size:clamp(32px,4vw,48px);">Built for Speed.<br>Built for <span style="color:var(--blue)">Consistency.</span></h2>
-
         <p>I'm Praveen — video editor focused on helping videographers deliver faster without compromising quality. Specialized in wedding films, teasers, and reels.</p>
-
         <p>No fluff. No missed deadlines. No excuses. You hand over the footage; I hand back a film your clients will remember.</p>
-
-        <p>I work with a dedicated team to handle high volumes without dropping quality — so when peak season hits, you don't drown.</p>
-
+        <p>I handle high volumes without dropping quality — so when peak season hits, you don't drown.</p>
         <div class="skills-list">
           <div class="skill-item"><span class="skill-dot"></span>DaVinci Resolve</div>
           <div class="skill-item"><span class="skill-dot"></span>Premiere Pro</div>
@@ -51,7 +47,6 @@
           <div class="skill-item"><span class="skill-dot"></span>Sound Design</div>
           <div class="skill-item"><span class="skill-dot"></span>Short-Form Reels</div>
         </div>
-
         <div style="display:flex;gap:14px;flex-wrap:wrap;">
           <a href="contact.html" class="btn">Work With Me</a>
           <a href="portfolio.html" class="btn-outline">See The Work →</a>
@@ -61,7 +56,6 @@
   </div>
 </section>
 
-<!-- CTA -->
 <section class="final-cta" style="padding:80px 0;">
   <div class="container">
     <h2 class="fade-in" style="font-size:clamp(32px,5vw,56px);">Looking for an editor<br>you can trust?</h2>
@@ -78,43 +72,26 @@
 
 <footer>
   <div class="footer-inner">
-    <div class="footer-brand">
-      <a href="index.html" class="logo">PRAVEEN</a>
-      <p>High-end remote editing for wedding studios and content creators.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Navigate</h4>
-      <a href="portfolio.html">Portfolio</a>
-      <a href="services.html">Services</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <a href="mailto:praveenalla06@gmail.com">praveenalla06@gmail.com</a>
-      <a href="https://wa.me/919348389850">+91 93483 89850</a>
-    </div>
+    <div class="footer-brand"><a href="index.html" class="logo">PRAVEEN</a><p>High-end remote editing for wedding studios and content creators.</p></div>
+    <div class="footer-col"><h4>Navigate</h4><a href="portfolio.html">Portfolio</a><a href="services.html">Services</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+    <div class="footer-col"><h4>Contact</h4><a href="mailto:praveenalla06@gmail.com">praveenalla06@gmail.com</a><a href="https://wa.me/919348389850">+91 93483 89850</a></div>
   </div>
-  <div class="footer-bottom">
-    <p>&copy; 2026 Praveen Cinematics. All rights reserved.</p>
-    <span>Made with precision.</span>
-  </div>
+  <div class="footer-bottom"><p>&copy; 2026 Praveen Cinematics. All rights reserved.</p><span>Made with precision.</span></div>
 </footer>
 
 <script>
-window.addEventListener("load", () => { document.body.classList.add("loaded"); });
+window.addEventListener("load", () => document.body.classList.add("loaded"));
+let ticking = false;
 window.addEventListener("scroll", () => {
-  document.querySelector("header").classList.toggle("scrolled", window.scrollY > 50);
-});
-const fadeEls = document.querySelectorAll(".fade-in");
-function checkFade() {
-  fadeEls.forEach((el, i) => {
-    if (el.getBoundingClientRect().top < window.innerHeight - 60) {
-      setTimeout(() => el.classList.add("show"), i * 100);
-    }
-  });
-}
-checkFade(); window.addEventListener("scroll", checkFade);
+  if (!ticking) {
+    requestAnimationFrame(() => { document.querySelector("header").classList.toggle("scrolled", window.scrollY > 50); ticking = false; });
+    ticking = true;
+  }
+}, { passive: true });
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("show"); io.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll(".fade-in").forEach(el => io.observe(el));
 function toggleMenu() { document.getElementById("navMenu").classList.toggle("active"); }
 </script>
 </body>

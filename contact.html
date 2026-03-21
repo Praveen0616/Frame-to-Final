@@ -2,12 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Contact | Frame to Final</title>
+  <title>Contact | Frame To Final</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:title" content="Contact | Praveen">
   <meta property="og:description" content="Start a project. Fast response. Reliable delivery.">
   <meta property="og:image" content="N&N PREWED thumb.jpg">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -31,14 +33,11 @@
     <p class="section-sub fade-in">Fast response. Reliable delivery. Let's make something great.</p>
 
     <div class="contact-wrapper">
-      <!-- FORM -->
       <div class="contact-form-card fade-in">
         <form class="contact-form" id="contactForm">
           <input type="hidden" name="access_key" value="f7096fa1-0056-4ced-92b9-8e65fe69b8f2">
-
           <input type="text" name="Name" placeholder="Your Name" required>
           <input type="text" name="WhatsApp" placeholder="WhatsApp Number" required>
-
           <select name="Project_Type" required>
             <option value="">Project Type</option>
             <option>Wedding Teaser</option>
@@ -47,43 +46,27 @@
             <option>Color Grading</option>
             <option>Other</option>
           </select>
-
           <input type="text" name="Budget" placeholder="Estimated Budget (Optional)">
           <textarea name="Project_Details" placeholder="Tell me about your project — footage length, style, deadline..." required></textarea>
-
           <button type="submit" class="btn">Send Inquiry →</button>
-
           <p id="resultText" style="margin-top:14px;display:none;font-size:14px;font-family:'DM Mono',monospace;"></p>
         </form>
       </div>
 
-      <!-- INFO -->
       <div class="contact-info-block fade-in">
         <div class="contact-direct">
           <h3>Or Reach Directly</h3>
-
           <div class="contact-item">
             <div class="contact-item-icon">📱</div>
-            <div class="contact-item-text">
-              <strong>+91 9348389850</strong>
-              <span>WhatsApp preferred</span>
-            </div>
+            <div class="contact-item-text"><strong>+91 9348389850</strong><span>WhatsApp preferred</span></div>
           </div>
-
           <div class="contact-item">
             <div class="contact-item-icon">✉️</div>
-            <div class="contact-item-text">
-              <strong>praveenalla06@gmail.com</strong>
-              <span>For longer briefs</span>
-            </div>
+            <div class="contact-item-text"><strong>praveenalla06@gmail.com</strong><span>For longer briefs</span></div>
           </div>
-
           <div class="contact-item">
             <div class="contact-item-icon">⚡</div>
-            <div class="contact-item-text">
-              <strong>3-4 Days Turnaround</strong>
-              <span>On most projects</span>
-            </div>
+            <div class="contact-item-text"><strong>3–4 Days Turnaround</strong><span>On most projects</span></div>
           </div>
         </div>
 
@@ -95,7 +78,6 @@
           </a>
         </div>
 
-        <!-- Turnaround note -->
         <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:24px 28px;">
           <p style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--blue);text-transform:uppercase;margin-bottom:12px;">What Happens Next</p>
           <p style="font-size:13px;color:var(--muted);line-height:1.7;">You submit the form → I review your project details → Reply within a few hours with next steps → We get started.</p>
@@ -107,76 +89,46 @@
 
 <footer>
   <div class="footer-inner">
-    <div class="footer-brand">
-      <a href="index.html" class="logo">PRAVEEN</a>
-      <p>High-end remote editing for wedding studios and content creators.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Navigate</h4>
-      <a href="portfolio.html">Portfolio</a>
-      <a href="services.html">Services</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <a href="mailto:praveenalla06@gmail.com">praveenalla06@gmail.com</a>
-      <a href="https://wa.me/919348389850">+91 93483 89850</a>
-    </div>
+    <div class="footer-brand"><a href="index.html" class="logo">PRAVEEN</a><p>High-end remote editing for wedding studios and content creators.</p></div>
+    <div class="footer-col"><h4>Navigate</h4><a href="portfolio.html">Portfolio</a><a href="services.html">Services</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+    <div class="footer-col"><h4>Contact</h4><a href="mailto:praveenalla06@gmail.com">praveenalla06@gmail.com</a><a href="https://wa.me/919348389850">+91 93483 89850</a></div>
   </div>
-  <div class="footer-bottom">
-    <p>&copy; 2026 Praveen Cinematics. All rights reserved.</p>
-    <span>Made with precision.</span>
-  </div>
+  <div class="footer-bottom"><p>&copy; 2026 Praveen Cinematics. All rights reserved.</p><span>Made with precision.</span></div>
 </footer>
 
 <script>
-window.addEventListener("load", () => { document.body.classList.add("loaded"); });
+window.addEventListener("load", () => document.body.classList.add("loaded"));
+let ticking = false;
 window.addEventListener("scroll", () => {
-  document.querySelector("header").classList.toggle("scrolled", window.scrollY > 50);
-});
-const fadeEls = document.querySelectorAll(".fade-in");
-function checkFade() {
-  fadeEls.forEach((el, i) => {
-    if (el.getBoundingClientRect().top < window.innerHeight - 60) {
-      setTimeout(() => el.classList.add("show"), i * 100);
-    }
-  });
-}
-checkFade(); window.addEventListener("scroll", checkFade);
+  if (!ticking) {
+    requestAnimationFrame(() => { document.querySelector("header").classList.toggle("scrolled", window.scrollY > 50); ticking = false; });
+    ticking = true;
+  }
+}, { passive: true });
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("show"); io.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll(".fade-in").forEach(el => io.observe(el));
 function toggleMenu() { document.getElementById("navMenu").classList.toggle("active"); }
 
-// Form submission
+// Form
 const form = document.getElementById("contactForm");
 const result = document.getElementById("resultText");
-
 form.addEventListener("submit", function(e) {
   e.preventDefault();
   const json = JSON.stringify(Object.fromEntries(new FormData(form)));
-  result.innerHTML = "Sending...";
-  result.style.display = "block";
-  result.style.color = "var(--muted)";
-
+  result.innerHTML = "Sending..."; result.style.display = "block"; result.style.color = "var(--muted)";
   fetch("https://api.web3forms.com/submit", {
     method: "POST",
     headers: { "Content-Type": "application/json", "Accept": "application/json" },
     body: json
   })
-  .then(async (res) => {
+  .then(async res => {
     const data = await res.json();
-    if (res.status === 200) {
-      result.innerHTML = "✓ Inquiry sent. I'll review it and reply shortly.";
-      result.style.color = "var(--blue)";
-      form.reset();
-    } else {
-      result.innerHTML = "Something went wrong. Email directly at praveenalla06@gmail.com";
-      result.style.color = "#ff6b6b";
-    }
+    if (res.status === 200) { result.innerHTML = "✓ Inquiry sent. I'll review it and reply shortly."; result.style.color = "var(--blue)"; form.reset(); }
+    else { result.innerHTML = "Something went wrong. Email: praveenalla06@gmail.com"; result.style.color = "#ff6b6b"; }
   })
-  .catch(() => {
-    result.innerHTML = "Something went wrong. Email directly at praveenalla06@gmail.com";
-    result.style.color = "#ff6b6b";
-  });
+  .catch(() => { result.innerHTML = "Something went wrong. Email: praveenalla06@gmail.com"; result.style.color = "#ff6b6b"; });
 });
 </script>
 </body>

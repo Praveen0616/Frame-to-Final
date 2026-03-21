@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://frametofinal.vercel.app/sitemap.xml

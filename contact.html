@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact | Frame to Final</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="Contact | Praveen">
+  <meta property="og:description" content="Start a project. Fast response. Reliable delivery.">
+  <meta property="og:image" content="N&N PREWED thumb.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">PRAVEEN</a>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <nav id="navMenu">
+    <a href="index.html">Home</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html" class="nav-cta active">Start a Project</a>
+  </nav>
+</header>
+
+<section class="contact-page">
+  <div class="container">
+    <p class="section-label fade-in">Get In Touch</p>
+    <h2 class="section-heading fade-in">Start a Project</h2>
+    <p class="section-sub fade-in">Fast response. Reliable delivery. Let's make something great.</p>
+
+    <div class="contact-wrapper">
+      <!-- FORM -->
+      <div class="contact-form-card fade-in">
+        <form class="contact-form" id="contactForm">
+          <input type="hidden" name="access_key" value="f7096fa1-0056-4ced-92b9-8e65fe69b8f2">
+
+          <input type="text" name="Name" placeholder="Your Name" required>
+          <input type="text" name="WhatsApp" placeholder="WhatsApp Number" required>
+
+          <select name="Project_Type" required>
+            <option value="">Project Type</option>
+            <option>Wedding Teaser</option>
+            <option>Full Wedding Film</option>
+            <option>Reels Editing</option>
+            <option>Color Grading</option>
+            <option>Other</option>
+          </select>
+
+          <input type="text" name="Budget" placeholder="Estimated Budget (Optional)">
+          <textarea name="Project_Details" placeholder="Tell me about your project — footage length, style, deadline..." required></textarea>
+
+          <button type="submit" class="btn">Send Inquiry →</button>
+
+          <p id="resultText" style="margin-top:14px;display:none;font-size:14px;font-family:'DM Mono',monospace;"></p>
+        </form>
+      </div>
+
+      <!-- INFO -->
+      <div class="contact-info-block fade-in">
+        <div class="contact-direct">
+          <h3>Or Reach Directly</h3>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">📱</div>
+            <div class="contact-item-text">
+              <strong>+91 9348389850</strong>
+              <span>WhatsApp preferred</span>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">✉️</div>
+            <div class="contact-item-text">
+              <strong>praveenalla06@gmail.com</strong>
+              <span>For longer briefs</span>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">⚡</div>
+            <div class="contact-item-text">
+              <strong>3-4 Days Turnaround</strong>
+              <span>On most projects</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-wa">
+          <p>Prefer a quick chat? Message directly on WhatsApp — fastest response guaranteed.</p>
+          <a href="https://wa.me/919348389850" class="btn-wa">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Message on WhatsApp
+          </a>
+        </div>
+
+        <!-- Turnaround note -->
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:24px 28px;">
+          <p style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--blue);text-transform:uppercase;margin-bottom:12px;">What Happens Next</p>
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;">You submit the form → I review your project details → Reply within a few hours with next steps → We get started.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">PRAVEEN</a>
+      <p>High-end remote editing for wedding studios and content creators.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="services.html">Services</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="mailto:praveenalla06@gmail.com">praveenalla06@gmail.com</a>
+      <a href="https://wa.me/919348389850">+91 93483 89850</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Praveen Cinematics. All rights reserved.</p>
+    <span>Made with precision.</span>
+  </div>
+</footer>
+
+<script>
+window.addEventListener("load", () => { document.body.classList.add("loaded"); });
+window.addEventListener("scroll", () => {
+  document.querySelector("header").classList.toggle("scrolled", window.scrollY > 50);
+});
+const fadeEls = document.querySelectorAll(".fade-in");
+function checkFade() {
+  fadeEls.forEach((el, i) => {
+    if (el.getBoundingClientRect().top < window.innerHeight - 60) {
+      setTimeout(() => el.classList.add("show"), i * 100);
+    }
+  });
+}
+checkFade(); window.addEventListener("scroll", checkFade);
+function toggleMenu() { document.getElementById("navMenu").classList.toggle("active"); }
+
+// Form submission
+const form = document.getElementById("contactForm");
+const result = document.getElementById("resultText");
+
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+  const json = JSON.stringify(Object.fromEntries(new FormData(form)));
+  result.innerHTML = "Sending...";
+  result.style.display = "block";
+  result.style.color = "var(--muted)";
+
+  fetch("https://api.web3forms.com/submit", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "Accept": "application/json" },
+    body: json
+  })
+  .then(async (res) => {
+    const data = await res.json();
+    if (res.status === 200) {
+      result.innerHTML = "✓ Inquiry sent. I'll review it and reply shortly.";
+      result.style.color = "var(--blue)";
+      form.reset();
+    } else {
+      result.innerHTML = "Something went wrong. Email directly at praveenalla06@gmail.com";
+      result.style.color = "#ff6b6b";
+    }
+  })
+  .catch(() => {
+    result.innerHTML = "Something went wrong. Email directly at praveenalla06@gmail.com";
+    result.style.color = "#ff6b6b";
+  });
+});
+</script>
+</body>
+</html>
